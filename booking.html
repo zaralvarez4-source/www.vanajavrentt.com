@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Booking - Van Java Rent</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"><style>
+*{box-sizing:border-box}body{font-family:Poppins,sans-serif;background:#111;color:#fff;margin:0}
+.wrap{max-width:900px;margin:40px auto;background:#1b1b1b;padding:30px;border-radius:18px}
+h1{color:#d4af37;text-align:center}
+label{display:block;margin-top:15px}input,select{width:100%;padding:12px;border-radius:10px;border:none;margin-top:6px}
+.total{margin:20px 0;font-size:22px;color:#d4af37;font-weight:bold}
+button{width:100%;padding:15px;background:#d4af37;border:none;border-radius:30px;font-weight:700;cursor:pointer}
+a{color:#d4af37}
+</style></head><body><div class="wrap"><h1>Form Booking</h1>
+<p><a href="index.html">← Beranda</a></p>
+<label>Nama</label><input id=n>
+<label>No HP</label><input id=hp>
+<label>Jenis Kendaraan</label><select id=j onchange=hitung()><option>Motor</option><option>Mobil</option></select>
+<label>Unit</label><input id=u placeholder="Contoh: Beat / Avanza">
+<label>Harga per Hari (Rp)</label><input id=h type=number value=120000 oninput=hitung()>
+<label>Durasi (Hari)</label><input id=d type=number value=1 oninput=hitung()>
+<label>Antar Jemput</label><select id=a onchange=hitung()>
+<option value=0>Tidak</option>
+<option value=30000>St. Cilegon (+30rb)</option>
+<option value=50000>St. Krenceng (+50rb)</option>
+<option value=50000>Terminal Seruni (+50rb)</option>
+<option value=40000>BTM Travel (+40rb)</option>
+<option value=50000>Daytrans/Lintas/Vtrans (+50rb)</option>
+<option value=100000>Merak/Pelabuhan (+100rb)</option>
+<option value=50000>Anyer (+50rb)</option>
+</select>
+<label>Pembayaran</label><select id=pay><option>Transfer</option><option>COD</option></select>
+<div class=total>Total: <span id=t>Rp120.000</span></div>
+<button onclick=kirim()>Kirim Booking via WhatsApp</button>
+</div>
+<script>
+function rup(x){return 'Rp'+x.toLocaleString('id-ID')}
+function hitung(){let h=+hEl.value,d=+dEl.value,a=+aEl.value;let tot=h*d+a;t.innerHTML=rup(tot)}
+const hEl=h,dEl=d,aEl=a;
+hitung();
+function kirim(){
+let total=t.innerText;
+let msg=`Halo Admin Van Java Rent%0ASaya ingin booking.%0A%0ANama: ${n.value}%0ANo HP: ${hp.value}%0AJenis: ${j.value}%0AUnit: ${u.value}%0ADurasi: ${d.value} Hari%0APembayaran: ${pay.value}%0ATotal: ${total}`;
+location.href='https://wa.me/6289517344808?text='+msg;
+}
+</script></body></html>
